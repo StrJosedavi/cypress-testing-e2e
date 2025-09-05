@@ -1,0 +1,13 @@
+node_modules/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+.vscode/
+reports/
+
+cypress.env.json
+*.local.json
+npm-debug.log*
+
+.idea/
+.DS_Store
