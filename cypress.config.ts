@@ -5,8 +5,8 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'http://localhost:3000',
-    specPattern: 'cypress/e2e/**/*.spec.ts',
+    baseUrl: 'https://www.saucedemo.com/v1',
+    specPattern: 'cypress/e2e/**/*.cy.ts',
     supportFile: 'cypress/support/e2e.ts',
     video: false,
     screenshotOnRunFailure: true,
