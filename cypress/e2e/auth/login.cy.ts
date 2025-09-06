@@ -1,6 +1,7 @@
 import { LoginPage } from '../../pages/login.page'
 import { InventoryPage } from '../../pages/inventory.page'
 import { log } from 'console'
+import type { UserTypes } from '../../support/types/user'
 
 const login = new LoginPage()
 const inventory = new InventoryPage()
@@ -8,14 +9,17 @@ const inventory = new InventoryPage()
 // Descrevendo a funcionalidade testada - Autenticação de usuário na aplicação
 describe('Feature: User authentication in the application', () => {
 
-  let users: any
+  let users: UserTypes
 
   // Definindo as funções executadas antes de cada cenário
   beforeEach(() => {
     cy.clearAllCookies()
     cy.clearAllLocalStorage()
 
-    cy.fixture('users-types').then((types) => (users = types))
+    cy.fixture<UserTypes>('login-users').then((types) => {
+      users = types
+    })
+
     login.visit()
   })
 
