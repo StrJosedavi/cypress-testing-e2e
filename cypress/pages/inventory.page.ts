@@ -1,11 +1,10 @@
-// Page Object para a página de inventário (lista de produtos)
 export class InventoryPage {
-  // ==== Seletor raiz / containers ====
-  private readonly menuOverlay = '.bm-overlay'
+
+  // Componentes da página
   private readonly menuWrap = '.bm-menu-wrap'
-  private readonly burgerBtn = '.bm-burger-button button' // botão "Open Menu"
-  private readonly menuCloseBtn = '.bm-cross-button button' // botão "Close Menu"
-  private readonly cartLink = '#shopping_cart_container a.shopping_cart_link'
+  private readonly menuOpenButton = '.bm-burger-button button' 
+  private readonly menuCloseButton = '.bm-cross-button button' 
+  private readonly cartButton = '#shopping_cart_container a.shopping_cart_link'
   private readonly sortSelect = 'select.product_sort_container'
   private readonly inventoryList = '.inventory_list'
   private readonly inventoryItem = '.inventory_list .inventory_item'
@@ -17,25 +16,42 @@ export class InventoryPage {
   private readonly menuLogout = '#logout_sidebar_link'
   private readonly menuReset = '#reset_sidebar_link'
 
-  // ==== Ações de navegação ====
   visit() {
-    cy.visit('/inventory.html') // ajuste se sua rota base for diferente
+    cy.visit('/inventory.html') 
   }
 
   goToCart() {
-    cy.get(this.cartLink).click()
+    cy.get(this.cartButton).click()
   }
 
-  // ==== Menu lateral (hamburger) ====
   openMenu() {
-    cy.get(this.burgerBtn).click()
+    cy.get(this.menuOpenButton).click()
     cy.get(this.menuWrap).should('be.visible')
   }
 
   closeMenu() {
-    cy.get(this.menuCloseBtn).click()
+    cy.get(this.menuCloseButton).click()
     cy.get(this.menuWrap).should('not.be.visible')
   }
+
+  navigateMenuAndClickLogout() {
+    this.openMenu()
+    cy.get(this.menuLogout).click()
+  }
+
+  assertPageInventoryIsVisible() {
+    cy.url().should('include', '/inventory.html')
+    cy.get(this.cartButton).should('be.visible')
+  }
+
+
+
+
+
+  // ----------------------------- //
+
+  
+
 
   navigateMenuAllItems() {
     this.openMenu()
@@ -46,12 +62,7 @@ export class InventoryPage {
     this.openMenu()
     cy.get(this.menuAbout).invoke('removeAttr', 'target').click() // evitar nova aba
   }
-
-  navigateMenuLogout() {
-    this.openMenu()
-    cy.get(this.menuLogout).click()
-  }
-
+  
   resetAppState() {
     this.openMenu()
     cy.get(this.menuReset).click()
