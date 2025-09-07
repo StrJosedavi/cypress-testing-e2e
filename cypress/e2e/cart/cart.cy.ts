@@ -1,6 +1,10 @@
 import { InventoryPage } from '../../pages/inventory.page'
+import { CartPage } from '../../pages/cart.page'
+import { Step1CheckoutPage } from '../../pages/step-1-checkout.page'
 
 const inventory = new InventoryPage()
+const cart = new CartPage()
+const step1Checkout = new Step1CheckoutPage()
 
 describe('Feature: Shopping cart management', () => {
 

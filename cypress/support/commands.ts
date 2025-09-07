@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import 'cypress-xpath'
 import { LoginPage } from '../pages/login.page'
 import { InventoryPage } from '../pages/inventory.page'
 import type { UserTypes } from '../support/types/user'

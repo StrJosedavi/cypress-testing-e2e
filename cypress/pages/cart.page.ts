@@ -27,6 +27,14 @@ export class CartPage {
     cy.visit('/cart.html')
   }
 
+  proceedToCheckout() {
+    cy.get(this.checkoutBtn).click()
+    cy.url().should('include', '/checkout-step-one.html')
+  }
+
+
+
+
   goToCart() {
     cy.get(this.cartIconLink).click()
     cy.url().should('include', '/cart.html')
@@ -67,11 +75,6 @@ export class CartPage {
   continueShopping() {
     cy.get(this.continueShoppingBtn).click()
     cy.url().should('include', '/inventory.html')
-  }
-
-  proceedToCheckout() {
-    cy.get(this.checkoutBtn).click()
-    cy.url().should('include', '/checkout-step-one.html')
   }
 
   // ==== Leitura/validações ====
