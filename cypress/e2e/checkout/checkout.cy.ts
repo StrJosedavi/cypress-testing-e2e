@@ -58,12 +58,26 @@ describe('Feature: Product selection and order completion', () => {
         })
     })
     describe('checkout step two', () => {
-         /*
+        /*
             O caso de teste tem como objetivo validar o fluxo de compra, desde a adição do produto ao carrinho
             até onde o usuário consegue avançar para a página de checkout.
         */
-        it('Scenario: Add product to cart and advance to checkout', () => {
-            step1Checkout.assertPageStep1CheckoutIsVisible()
+        it('Scenario: Add product to cart and advance to step final for check information values products', () => {
+            step1Checkout.fillCheckoutInformation('Jose', 'Silva', '12345')
+            step1Checkout.clickButtonContinue()
+            step2Checkout.assertSumTaxAndSubtotalForCheckTotal()
+        })
+
+        /*
+            O caso de teste tem como objetivo validar o fluxo de compra, desde a adição do produto ao carrinho
+            até onde o usuário consegue avançar para a pagina de resumo do checkout e cancelar a compra.
+        */
+        it('Scenario: Add product to cart and advance to step final and cancel checkout', () => {
+            step1Checkout.fillCheckoutInformation('Jose', 'Silva', '12345')
+            step1Checkout.clickButtonContinue()
+            step2Checkout.clickButtonCancel()
+
+            inventory.assertPageInventoryIsVisible()
         })
 
     })
