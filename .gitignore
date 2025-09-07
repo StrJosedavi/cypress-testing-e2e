@@ -11,3 +11,6 @@ npm-debug.log*
 
 .idea/
 .DS_Store
+
+coverage/
+.nyc_output/
