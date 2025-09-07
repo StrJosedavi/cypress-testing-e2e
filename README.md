@@ -49,6 +49,10 @@ npm run cy:run
 
 ---
 
+## Cloud Cypress
+- Execução Cypress Cloud 
+<img width="1907" height="989" alt="image" src="https://github.com/user-attachments/assets/aa0fd022-c84b-469d-b87b-daeed8e46cb9" />
+
 ## 📖 Boas práticas aplicadas
 
 - **Page Objects** → classes para cada página/feature.  
