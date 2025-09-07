@@ -32,9 +32,6 @@ export class CartPage {
     cy.url().should('include', '/checkout-step-one.html')
   }
 
-
-
-
   goToCart() {
     cy.get(this.cartIconLink).click()
     cy.url().should('include', '/cart.html')
@@ -87,7 +84,5 @@ export class CartPage {
   assertGridHeaders() {
     cy.get(this.qtyLabel).should('contain.text', 'QTY')
     cy.get(this.descLabel).should('contain.text', 'DESCRIPTION')
-  }
-
-  
+  }  
 }

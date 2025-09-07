@@ -58,4 +58,25 @@ describe('Feature: Viewing, detailing and initializing product pre-sales', () =>
             inventory.assertFilterName(false)
         })
     })
+
+    describe('Details products', () => {
+
+        /*
+            O caso de teste tem como objetivo validar a visualização dos detalhes
+            de um produto ao clicar na imagem do mesmo
+        */
+        it('Scenario: Choose a product and click on the image to see the product details.', () => {
+            inventory.assertDetailsOfProductByIndex(0)
+        })
+
+        /*
+            O caso de teste tem como objetivo validar a ação de clique do botão voltar
+            na página de detalhes do produto, garantindo que o usuário seja redirecionado
+        */
+        it('Scenario: Choose a product and click on the image to see the product details.', () => {
+            inventory.EnterPageDetails(0)
+            inventory.clickButtonBackDetails()
+            inventory.assertPageInventoryIsVisible()
+        })
+    })
 })

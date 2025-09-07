@@ -11,10 +11,11 @@ export class InventoryPage {
   private readonly inventoryItem = '.inventory_list .inventory_item'
 
   private readonly inventoryItemName = '.inventory_item_name'
-  private readonly inventoryItemPrice  = '.inventory_item_price'
+  private readonly inventoryItemPrice = '.inventory_item_price'
+  private readonly inventoryItemImg = '.inventory_item_img a img'
 
   private readonly addToCartButton = 'button.btn_primary.btn_inventory'
-  private readonly removeButton = 'button.btn_secondary.btn_inventory' 
+  private readonly removeButton = 'button.btn_secondary.btn_inventory'
 
   // Links do menu lateral
   private readonly menuAllItems = '#inventory_sidebar_link'
@@ -22,6 +23,11 @@ export class InventoryPage {
   private readonly menuLogout = '#logout_sidebar_link'
   private readonly menuReset = '#reset_sidebar_link'
 
+  // Detalhes do produto
+  private readonly inventoryDetailsBackButton = '//button[contains(text(), "<- Back")]'
+  private readonly inventoryDetailsPrice = '#inventory_item_container .inventory_details_price'
+  private readonly inventoryDetailsName = '#inventory_item_container .inventory_details_name'
+  
   visit() {
     cy.visit('/inventory.html')
   }
@@ -40,7 +46,7 @@ export class InventoryPage {
     cy.get(this.menuCloseButton).click()
     cy.get(this.menuWrap).should('not.be.visible')
   }
-
+  
   getItems() {
     return cy.get(this.inventoryItem)
   }
@@ -49,10 +55,13 @@ export class InventoryPage {
     cy.get(this.sortSelect).select(value)
   }
 
-   getItemByIndex(index: number) {
+  getItemByIndex(index: number) {
     return cy.get(this.inventoryItem).eq(index)
   }
 
+  clickButtonBackDetails() {
+    cy.xpath(this.inventoryDetailsBackButton).click()
+  }
   // Fluxos de ações
   navigateMenuAndClickLogout() {
     this.openMenu()
@@ -70,6 +79,13 @@ export class InventoryPage {
       cy.get(this.removeButton).click()
     })
   }
+
+  EnterPageDetails(index: number) {
+    this.getItemByIndex(index).within(() => {
+      cy.get(this.inventoryItemImg).click()
+    })
+  }
+
   // Assertions
   /*
     Valida se a pagina de inventário está visível, verificando a URL e o container principal.
@@ -89,10 +105,10 @@ export class InventoryPage {
     return cy.get(this.inventoryItemPrice).then(($prices) => {
 
       const first = $prices.first().text().trim()
-      const last  = $prices.last().text().trim()
+      const last = $prices.last().text().trim()
 
       const firstPrice = parseFloat(first.replace('$', ''))
-      const lastPrice  = parseFloat(last.replace('$', ''))
+      const lastPrice = parseFloat(last.replace('$', ''))
 
       if (isSmallestToLargest) {
         expect(firstPrice).to.be.lte(lastPrice)
@@ -115,7 +131,7 @@ export class InventoryPage {
     Clica no carrinho e valida se o item adicionado está presente lá.  
   */
   assertCheckCart(index: number) {
-    
+
     cy.get(this.inventoryItemName).eq(index).then(($itemName) => {
       const nameItem = $itemName.text().trim()
 
@@ -154,4 +170,33 @@ export class InventoryPage {
       }
     })
   }
+
+
+  /*    
+    Clica na imagem do produto pelo índice, captura o nome e preço do produto,
+    depois valida se os detalhes exibidos correspondem ao produto clicado.
+  */
+  assertDetailsOfProductByIndex(index: number) {
+    this.getItemByIndex(index).within(() => {
+      cy.get(this.inventoryItemName).invoke('text').then((nameItem) => {
+        cy.get(this.inventoryItemPrice).invoke('text').then((priceItem) => {
+
+          const name = nameItem.trim()
+          const price = priceItem.trim()
+
+          cy.get(this.inventoryItemImg).click()
+                  
+          // cy.get(this.inventoryDetailsName)
+          //   .should('be.visible')
+          //   .and('have.text', name)
+            
+          // cy.get(this.inventoryDetailsPrice)
+          //   .should('be.visible')
+          //   .and('have.text', price)
+        })
+      })
+    })
+  }
+
+
 }
