@@ -11,6 +11,8 @@ export default defineConfig({
     supportFile: 'cypress/support/e2e.ts',
     video: false,
     screenshotOnRunFailure: true,
+    viewportHeight: 920,
+    viewportWidth: 1980,
   },
   reporter: 'spec'
 });

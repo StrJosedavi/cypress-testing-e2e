@@ -1,12 +1,13 @@
 import { LoginPage } from '../../pages/login.page'
 import { InventoryPage } from '../../pages/inventory.page'
-import { log } from 'console'
 import type { UserTypes } from '../../support/types/user'
 
 const login = new LoginPage()
 const inventory = new InventoryPage()
 
-// Descrevendo a funcionalidade testada - Autenticação de usuário na aplicação
+/*
+  Feature (funcionalidade) que está sendo testada - Autenticação de usuário na aplicação
+*/
 describe('Feature: User authentication in the application', () => {
 
   let users: UserTypes
@@ -23,7 +24,10 @@ describe('Feature: User authentication in the application', () => {
     login.visit()
   })
 
-  // Descrevendo o cenário de teste - sucesso
+  /*
+    O caso de teste tem como objetivo validar o login de um usuário com credenciais válidas,
+    garantindo assim que o sistema autentica corretamente e redireciona para a página de inventário.
+  */
   it('Scenario: Successful login with valid credentials', () => {
 
     // preenchendo o formulário de login
@@ -34,7 +38,10 @@ describe('Feature: User authentication in the application', () => {
     inventory.assertPageInventoryIsVisible()
   })
 
-  // Descrevendo o cenário de teste - logout
+  /*
+    O caso de teste tem como objetivo validar o login de um usuário com credenciais válidas,
+    em seguida realizar o logout, garantindo que o sistema encerra a sessão corretamente
+  */
   it('Scenario: Successful login and logout', () => {
 
     // preenchendo o formulário de login
@@ -48,7 +55,10 @@ describe('Feature: User authentication in the application', () => {
     login.assertPageLoginIsVisible()
   })
 
-  // Descrevendo o cenário de teste - falha
+  /*
+    O caso de teste tem como objetivo validar o login de um usuário com credenciais de um usuário bloqueado,
+    garantindo assim que o sistema apresenta a mensagem de erro apropriada.
+  */
   it('Scenario: Unsuccessful login with user blocked', () => {
 
     // preenchendo o formulário de login
@@ -59,7 +69,10 @@ describe('Feature: User authentication in the application', () => {
     login.assertErrorMessage('Epic sadface: Sorry, this user has been locked out.')
   })
 
-  // Descrevendo o cenário de teste - falha
+  /*
+    O caso de teste tem como objetivo validar o login de um usuário com credenciais inválidas,
+    garantindo assim que o sistema apresenta a mensagem de erro apropriada.
+  */
   it('Scenario: Unsuccessful login with invalid credentials', () => {
 
     // preenchendo o formulário de login

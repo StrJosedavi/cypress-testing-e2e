@@ -21,6 +21,7 @@ export class CartPage {
   private readonly menuReset = '#reset_sidebar_link'
   private readonly cartIconLink = '#shopping_cart_container a.shopping_cart_link'
 
+  private readonly labelNameItem = '.inventory_item_name'
   // ==== Navegação ====
   visit() {
     cy.visit('/cart.html')
@@ -85,29 +86,5 @@ export class CartPage {
     cy.get(this.descLabel).should('contain.text', 'DESCRIPTION')
   }
 
-  /** Retorna o container de lista do carrinho */
-  getList() {
-    return cy.get(this.cartList)
-  }
-
-  /**
-   * Valida que o carrinho está vazio (apenas cabeçalho sem itens)
-   * Observação: depende da implementação; ajuste se houver mensagem "Your cart is empty"
-   */
-  assertEmptyCart() {
-    cy.get(this.cartList).within(() => {
-      cy.get('.cart_quantity_label').should('exist')
-      cy.get('.cart_desc_label').should('exist')
-      // Sem .cart_item (se existir na sua implementação)
-      cy.get('.cart_item').should('have.length', 0)
-    })
-  }
-
-  /**
-   * (Opcional) Se o HTML de itens incluir .cart_item, podemos checar por nome/descrição/preço.
-   * Deixei um helper pronto para quando os itens estiverem na página.
-   */
-  assertHasItemByText(text: string) {
-    cy.get(this.cartList).contains(text).should('be.visible')
-  }
+  
 }
