@@ -1,5 +1,5 @@
-import { LoginPage } from '../../pages/login.page'
-import { InventoryPage } from '../../pages/inventory.page'
+import { LoginPage } from '../../pages/auth/login.page'
+import { InventoryPage } from '../../pages/inventory/inventory.page'
 import type { UserTypes } from '../../support/types/user'
 
 const login = new LoginPage()

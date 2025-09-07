@@ -1,4 +1,4 @@
-import { InventoryPage } from '../../pages/inventory.page'
+import { InventoryPage } from '../../pages/inventory/inventory.page'
 
 const inventory = new InventoryPage()
 

@@ -1,6 +1,6 @@
-import { InventoryPage } from '../../pages/inventory.page'
-import { CartPage } from '../../pages/cart.page'
-import { Step1CheckoutPage } from '../../pages/step-1-checkout.page'
+import { InventoryPage } from '../../pages/inventory/inventory.page'
+import { CartPage } from '../../pages/cart/cart.page'
+import { Step1CheckoutPage } from '../../pages/checkout/step-1-checkout.page'
 
 const inventory = new InventoryPage()
 const cart = new CartPage()
