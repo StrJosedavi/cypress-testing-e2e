@@ -27,3 +27,15 @@ Funcionalidade: Listagem de produtos
     Dado que estou na página de detalhes de um produto
     Quando clico no botão "Back"
     Então devo ser redirecionado para a lista de produtos
+
+  Cenário: Validar adaptação da tela de inventário em diferentes resoluções
+    Dado que estou logado no sistema
+    Quando acesso a página de produtos na resolução <largura>x<altura>
+    Então a tela de produtos deve se adaptar corretamente sem quebras de layout
+
+    Exemplos:
+      | largura | altura |
+      | 360     | 640    |
+      | 768     | 1024   |
+      | 1366    | 768    |
+      | 1920    | 1080   |
