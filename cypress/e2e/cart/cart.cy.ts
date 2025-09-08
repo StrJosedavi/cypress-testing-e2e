@@ -1,11 +1,10 @@
 import { InventoryPage } from '../../pages/inventory/inventory.page'
-import { CartPage } from '../../pages/cart/cart.page'
-import { Step1CheckoutPage } from '../../pages/checkout/step-1-checkout.page'
 
 const inventory = new InventoryPage()
-const cart = new CartPage()
-const step1Checkout = new Step1CheckoutPage()
 
+/*
+    Descrevendo a funcionalidade de gerenciamento de carrinho de compras
+*/
 describe('Feature: Shopping cart management', () => {
 
     beforeEach(() => {

@@ -171,32 +171,13 @@ export class InventoryPage {
     })
   }
 
+  assertResolutionChange(){
+    cy.get('.header_container').should('be.visible')
+    cy.get('#shopping_cart_container').should('be.visible')
+    cy.get('.inventory_item').should('have.length.at.least', 6)
 
-  /*    
-    Clica na imagem do produto pelo índice, captura o nome e preço do produto,
-    depois valida se os detalhes exibidos correspondem ao produto clicado.
-  */
-  assertDetailsOfProductByIndex(index: number) {
-    this.getItemByIndex(index).within(() => {
-      cy.get(this.inventoryItemName).invoke('text').then((nameItem) => {
-        cy.get(this.inventoryItemPrice).invoke('text').then((priceItem) => {
-
-          const name = nameItem.trim()
-          const price = priceItem.trim()
-
-          cy.get(this.inventoryItemImg).click()
-                  
-          // cy.get(this.inventoryDetailsName)
-          //   .should('be.visible')
-          //   .and('have.text', name)
-            
-          // cy.get(this.inventoryDetailsPrice)
-          //   .should('be.visible')
-          //   .and('have.text', price)
-        })
-      })
+    cy.document().then((doc) => {
+      expect(doc.documentElement.scrollWidth).to.be.lte(doc.documentElement.clientWidth)
     })
   }
-
-
 }

@@ -6,7 +6,7 @@ const login = new LoginPage()
 const inventory = new InventoryPage()
 
 /*
-  Feature (funcionalidade) que está sendo testada - Autenticação de usuário na aplicação
+  Feature (funcionalidade) que está sendo testada - Autenticação de usuário na aplicação.
 */
 describe('Feature: User authentication in the application', () => {
 

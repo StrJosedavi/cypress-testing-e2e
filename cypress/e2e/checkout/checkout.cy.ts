@@ -10,6 +10,9 @@ const step1Checkout = new Step1CheckoutPage()
 const step2Checkout = new Step2CheckoutPage()
 const completeCheckoutPage = new CompleteCheckoutPage()
 
+/*
+    Descrevendo funcionalidade da seleção de produtos, preenchimento de formulário de entrega e finalização de pedido
+*/
 describe('Feature: Product selection and order completion', () => {
     beforeEach(() => {
         cy.loginValid()

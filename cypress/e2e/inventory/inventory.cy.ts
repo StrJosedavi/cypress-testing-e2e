@@ -2,7 +2,15 @@ import { InventoryPage } from '../../pages/inventory/inventory.page'
 
 const inventory = new InventoryPage()
 
-// Descrevendo a funcionalidade testada - Autenticação de usuário na aplicação
+const viewports: Array<[number, number]> = [
+  [360, 640],   // mobile
+  [768, 1024],  // tablet
+  [1366, 768],  // desktop
+  [1920, 1080], // Full HD
+]
+/*
+    Descrevendo a funcionalidade testada - Autenticação de usuário na aplicação.
+*/
 describe('Feature: Viewing, detailing and initializing product pre-sales', () => {
 
     beforeEach(() => {
@@ -60,23 +68,29 @@ describe('Feature: Viewing, detailing and initializing product pre-sales', () =>
     })
 
     describe('Details products', () => {
-
-        /*
-            O caso de teste tem como objetivo validar a visualização dos detalhes
-            de um produto ao clicar na imagem do mesmo
-        */
-        it('Scenario: Choose a product and click on the image to see the product details.', () => {
-            inventory.assertDetailsOfProductByIndex(0)
-        })
-
         /*
             O caso de teste tem como objetivo validar a ação de clique do botão voltar
-            na página de detalhes do produto, garantindo que o usuário seja redirecionado
+            na página de detalhes do produto, garantindo que o usuário seja redirecionado.
         */
-        it('Scenario: Choose a product and click on the image to see the product details.', () => {
+        it('Scenario: Choose a product, click on the image to see the product details and click button back', () => {
             inventory.EnterPageDetails(0)
             inventory.clickButtonBackDetails()
             inventory.assertPageInventoryIsVisible()
+        })
+    })
+
+    describe('responsive page inventory', () => {
+        viewports.forEach(([w, h]) => {
+
+            /*
+                O caso de teste tem como objetivo validar a adaptabilidade da tela de produtos
+                a diferentes resoluções, garantindo assim usabilidade em diferentes dispositivos.
+            */
+            it(`viewport ${w}x${h}`, () => {     
+                cy.viewport(w, h)   
+                
+                inventory.assertResolutionChange()
+            })
         })
     })
 })
