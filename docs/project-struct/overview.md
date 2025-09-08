@@ -65,8 +65,8 @@ O arquivo de especificação para checkout está vazio, mas a estrutura do proje
 ## Métricas do Projeto
 
 - **Total de arquivos de teste:** 4
-- **Total de cenários Gherkin documentados:** 10
-- **Cobertura de funcionalidades críticas:** Os testes automatizados cobrem todos os fluxos principais de autenticação, gerenciamento de carrinho e listagem de produtos. O fluxo de checkout ainda não possui cenários implementados, o que reduz a cobertura total.
+- **Total de cenários Gherkin documentados:** 19
+- **Cobertura de funcionalidades críticas:** Os testes automatizados cobrem todos os fluxos principais de autenticação, gerenciamento de carrinho e listagem de produtos.
 - **Reutilização de Page Objects:** 100% dos testes utilizam page objects, promovendo manutenção facilitada.
 
 ## Conclusão
